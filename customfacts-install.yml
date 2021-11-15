@@ -1,6 +1,6 @@
 ---
 - name: PLAY 1 Install custom facts
-  hosts: rhel
+  hosts: all
   vars:
     remote_dir: /etc/ansible/facts.d
     facts_file: custom.fact
@@ -16,7 +16,7 @@
       dest: "{{ remote_dir }}"
 
 - name: PLAY 2 Install SAMBA server with custom facts
-  hosts: rhel
+  hosts: all
   tasks:
   - name: Install SAMBA
     package:
