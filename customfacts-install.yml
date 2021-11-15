@@ -1,0 +1,29 @@
+---
+- name: PLAY 1 Install custom facts
+  hosts: rhel
+  vars:
+    remote_dir: /etc/ansible/facts.d
+    facts_file: custom.fact
+  tasks:
+  - name: Create Facts directory on target hosts
+    file:
+      path: "{{ remote_dir }}"
+      state: directory
+      recurse: yes
+  - name: Copy contents to Facts file
+    copy:
+      src: "{{ facts_file }}"
+      dest: "{{ remote_dir }}"
+
+- name: PLAY 2 Install SAMBA server with custom facts
+  hosts: rhel
+  tasks:
+  - name: Install SAMBA
+    package:
+      name: "{{ ansible_local.custom.localfacts.pkgname }}"
+      state: present
+  - name: start SMB service
+    service: 
+      name: "{{ ansible_local.custom.localfacts.srvc }}"
+      enabled: yes
+

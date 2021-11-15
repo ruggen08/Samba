@@ -1,0 +1,21 @@
+target1 ansible_host=192.168.86.71 ansible_connection=ssh ansible_user=root ansible_ssh_pass=2l82gohomeNOW
+target2 ansible_host=192.168.86.70 ansible_connection=ssh ansible_user=root ansible_ssh_pass=2l82gohomeNOW
+controller ansible_host=192.168.86.63 ansible_connection=ssh ansible_user=root ansible_ssh_pass=2l82gohomeNOW
+
+target3 ansible_host=192.168.86.80 ansible_connection=winrm ansible_port=5986 ansible_winrm_scheme=https ansible_winrm_transport=basic ansible_winrm_server_cert_validation=ignore ansible_user=administrator ansible_password=2l82gohomeNOW
+
+target4 ansible_host=192.168.86.81 ansible_connection=winrm ansible_port=5986 ansible_winrm_scheme=https ansible_winrm_transport=basic ansible_winrm_server_cert_validation=ignore ansible_user=administrator ansible_password=2l82gohomeNOW
+
+
+[rhel]
+target1
+target2
+
+[win]
+target3
+target4
+
+
+[all_servers:children]
+rhel
+win
