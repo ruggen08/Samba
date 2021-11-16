@@ -26,4 +26,5 @@
     service: 
       name: "{{ ansible_local.custom.localfacts.srvc }}"
       enabled: yes
+      state: started
 
